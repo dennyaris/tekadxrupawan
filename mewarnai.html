@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Form Pendaftaran - Mewarnai</title>
+  <link rel="stylesheet" href="assets/style.css"/>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="header">
+        <h1>Mewarnai</h1>
+        <p>Form pendaftaran lomba Mewarnai untuk siswa SD.</p>
+      </div>
+      <form class="form" id="form-mw">
+        <div class="notice">Bidang bertanda <span class="req">*</span> wajib diisi.</div>
+        <div class="grid">
+          <div>
+            <label>Nama Lengkap <span class="req">*</span></label>
+            <input type="text" name="nama_lengkap" required placeholder="Nama peserta">
+          </div>
+          <div>
+            <label>Asal Sekolah <span class="req">*</span></label>
+            <input type="text" name="asal_sekolah" required placeholder="SD ...">
+          </div>
+
+          <div>
+            <label>Kelas <span class="req">*</span></label>
+            <select name="kelas" required>
+              <option value="" selected disabled>Pilih rentang kelas</option>
+              <option value="1-2">1 - 2</option>
+              <option value="3-4">3 - 4</option>
+              <option value="5-6">5 - 6</option>
+            </select>
+          </div>
+          <div>
+            <label>Nama PIC Guru <span class="req">*</span></label>
+            <input type="text" name="nama_pic_guru" required placeholder="Nama guru pendamping">
+          </div>
+
+          <div class="row-full">
+            <label>Alamat Tinggal <span class="req">*</span></label>
+            <textarea name="alamat_tinggal" required placeholder="Alamat lengkap"></textarea>
+          </div>
+
+          <div>
+            <label>Kontak PIC Guru <span class="req">*</span></label>
+            <input type="tel" name="kontak_pic_guru" inputmode="tel" pattern="[0-9+ ]{8,}" required placeholder="08xxx / +62xxx">
+            <div class="help">Gunakan angka, spasi, dan tanda + saja.</div>
+          </div>
+          <div>
+            <label>Nama Orang Tua <span class="req">*</span></label>
+            <input type="text" name="nama_ortu" required placeholder="Nama orang tua/wali">
+          </div>
+          <div class="row-full">
+            <label>Kontak Orang Tua <span class="req">*</span></label>
+            <input type="tel" name="kontak_ortu" inputmode="tel" pattern="[0-9+ ]{8,}" required placeholder="08xxx / +62xxx">
+          </div>
+        </div>
+
+        <div class="footer-note">Dengan mengirim formulir ini, Anda menyetujui data digunakan untuk keperluan administrasi lomba.</div>
+        <div class="actions">
+          <a class="btn-secondary" href="cerdas-cermat.html" role="button">Daftar Cerdas Cermat</a>
+          <button type="submit" class="btn-primary">Kirim Pendaftaran</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="assets/script.js"></script>
+  <script>
+  (function(){
+    const form = document.getElementById('form-mw');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(!form.reportValidity()) return;
+
+      const payload = {
+        eventType: 'mewarnai',
+        nama_lengkap: form.nama_lengkap.value.trim(),
+        asal_sekolah: form.asal_sekolah.value.trim(),
+        kelas: form.kelas.value,
+        alamat_tinggal: form.alamat_tinggal.value.trim(),
+        nama_pic_guru: form.nama_pic_guru.value.trim(),
+        kontak_pic_guru: telSanitize(form.kontak_pic_guru.value),
+        nama_ortu: form.nama_ortu.value.trim(),
+        kontak_ortu: telSanitize(form.kontak_ortu.value),
+        submitted_at: new Date().toISOString()
+      };
+      submitToSheet(payload, form);
+    });
+  })();
+  </script>
+</body>
+</html>

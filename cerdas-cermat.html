@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Form Pendaftaran - Cerdas Cermat</title>
+  <link rel="stylesheet" href="assets/style.css"/>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="header">
+        <h1>Cerdas Cermat</h1>
+        <p>Form pendaftaran tim lomba Cerdas Cermat (maks 5 anggota).</p>
+      </div>
+      <form class="form" id="form-cc">
+        <div class="notice"> <span class="req">*</span> wajib diisi.</div>
+        <div class="grid">
+          <div>
+            <label>Asal Sekolah <span class="req">*</span></label>
+            <input type="text" name="asal_sekolah" required placeholder="SMP / SMA / SMK ...">
+          </div>
+          <div>
+            <label>Kota/Kab <span class="req">*</span></label>
+            <input type="text" name="kota_kab" required placeholder="Contoh: Tangerang">
+          </div>
+
+          <div class="row-full">
+            <label>Nama Tim <span class="req">*</span></label>
+            <input type="text" name="nama_tim" required placeholder="Contoh: Tim Aksara">
+          </div>
+
+          <div class="row-full"><label>Nama Lengkap Anggota Tim</label></div>
+          <div><input type="text" name="anggota_1" placeholder="Anggota 1 (wajib)" required></div>
+          <div><input type="text" name="anggota_2" placeholder="Anggota 2"></div>
+          <div><input type="text" name="anggota_3" placeholder="Anggota 3"></div>
+          <div><input type="text" name="anggota_4" placeholder="Anggota 4"></div>
+          <div><input type="text" name="anggota_5" placeholder="Anggota 5"></div>
+
+          <div>
+            <label>Nama PIC Guru <span class="req">*</span></label>
+            <input type="text" name="nama_pic_guru" required placeholder="Nama guru pendamping">
+          </div>
+          <div>
+            <label>Kontak PIC Guru <span class="req">*</span></label>
+            <input type="tel" name="kontak_pic_guru" inputmode="tel" pattern="[0-9+ ]{8,}" required placeholder="08xxx / +62xxx">
+            <div class="help">Gunakan angka, spasi, dan tanda + saja.</div>
+          </div>
+
+          <div class="row-full">
+            <label>Kontak Perwakilan Anggota Tim <span class="req">*</span></label>
+            <input type="tel" name="kontak_perwakilan" inputmode="tel" pattern="[0-9+ ]{8,}" required placeholder="08xxx / +62xxx">
+          </div>
+        </div>
+
+        <div class="footer-note">Dengan mengirim formulir ini, Anda menyetujui data digunakan untuk keperluan administrasi lomba.</div>
+        <div class="actions">
+          <a class="btn-secondary" href="mewarnai.html" role="button">Daftar Mewarnai</a>
+          <button type="submit" class="btn-primary">Kirim Pendaftaran</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="assets/script.js"></script>
+  <script>
+  (function(){
+    const form = document.getElementById('form-cc');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(!form.reportValidity()) return;
+
+      const payload = {
+        eventType: 'cerdas_cermat',
+        asal_sekolah: form.asal_sekolah.value.trim(),
+        kota_kab: form.kota_kab.value.trim(),
+        nama_tim: form.nama_tim.value.trim(),
+        anggota_1: form.anggota_1.value.trim(),
+        anggota_2: form.anggota_2.value.trim(),
+        anggota_3: form.anggota_3.value.trim(),
+        anggota_4: form.anggota_4.value.trim(),
+        anggota_5: form.anggota_5.value.trim(),
+        nama_pic_guru: form.nama_pic_guru.value.trim(),
+        kontak_pic_guru: telSanitize(form.kontak_pic_guru.value),
+        kontak_perwakilan: telSanitize(form.kontak_perwakilan.value),
+        submitted_at: new Date().toISOString()
+      };
+      submitToSheet(payload, form);
+    });
+  })();
+  </script>
+</body>
+</html>
