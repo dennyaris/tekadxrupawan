@@ -21,7 +21,8 @@ function toFormUrlEncoded(obj) {
  * Pass an object of fields + {eventType: "cerdas_cermat"|"mewarnai"}.
  */
 async function submitToSheet(payload, formEl) {
-  if (!ENDPOINT || ENDPOINT.includes("https://script.google.com/macros/s/AKfycbyj6F5Ophqt4IUQun_6qPJ7k2EGH3qftDyg6rl1sYTpBsZtgOw1OJoqNhdUUxwGI9VCoA/exec")) {
+  // Periksa apakah ENDPOINT masih menggunakan URL default atau belum diubah
+  if (!ENDPOINT || ENDPOINT.includes("AKfycbyj6F5Ophqt4IUQun_6qPJ7k2EGH3qftDyg6rl1sYTpBsZtgOw1OJoqNhdUUxwGI9VCoA")) {
     alert("Silakan ganti ENDPOINT di assets/script.js dengan URL Web App Google Apps Script Anda.");
     return;
   }
