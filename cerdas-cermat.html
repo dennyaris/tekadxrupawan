@@ -5,8 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Form Pendaftaran - Cerdas Cermat</title>
   <link rel="stylesheet" href="assets/style.css"/>
+  <script>
+    // Mencegah klik kanan
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+      return false;
+    });
+    
+    // Mencegah shortcut keyboard untuk inspect element
+    document.addEventListener('keydown', function(e) {
+      // F12
+      if(e.keyCode == 123) {
+        e.preventDefault();
+        return false;
+      }
+      
+      // Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
+      if(e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74 || e.keyCode == 67)) {
+        e.preventDefault();
+        return false;
+      }
+      
+      // Ctrl+U (view source)
+      if(e.ctrlKey && e.keyCode == 85) {
+        e.preventDefault();
+        return false;
+      }
+    });
+    
+    // Deteksi DevTools
+    function detectDevTools() {
+      const widthThreshold = window.outerWidth - window.innerWidth > 160;
+      const heightThreshold = window.outerHeight - window.innerHeight > 160;
+      
+      if(widthThreshold || heightThreshold) {
+        document.body.innerHTML = '<div style="text-align:center;padding:50px;"><h1>Akses Ditolak</h1><p>Tindakan tidak diizinkan.</p></div>';
+      }
+    }
+    
+    window.addEventListener('resize', detectDevTools);
+    setInterval(detectDevTools, 1000);
+  </script>
 </head>
-<body>
+<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
   <div class="container">
     <div class="card">
       <div class="header">
@@ -54,9 +95,8 @@
         </div>
 
         <div class="footer-note">Dengan mengirim formulir ini, Anda menyetujui data digunakan untuk keperluan administrasi lomba.</div>
-        <div class="actions">
-          <a class="btn-secondary" href="mewarnai.html" role="button">Daftar Mewarnai</a>
-          <button type="submit" class="btn-primary">Kirim Pendaftaran</button>
+        <div class="actions" style="justify-content: center; flex-wrap: wrap;">
+          <button type="submit" class="btn-primary" style="margin: 0 auto; min-width: 200px;">Kirim Pendaftaran</button>
         </div>
       </form>
     </div>
