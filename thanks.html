@@ -5,13 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Terima Kasih</title>
   <link rel="stylesheet" href="assets/style.css"/>
+  <style>
+    .thumbs-up {
+      width: 120px;
+      height: 120px;
+      margin: 20px auto;
+      animation: pulse 1.5s infinite alternate;
+    }
+    
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(1.1);
+      }
+    }
+  </style>
 </head>
 <body>
 <div class="container">
   <div class="card">
-    <div class="header">
+    <div class="header text-center">
       <h1>Terima kasih!</h1>
       <p>Pendaftaran Anda sudah kami terima.</p>
+      
+      <div class="thumbs-up" style="width: 120px; height: 120px; margin: 20px auto;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+          <!-- Lingkaran luar -->
+          <circle cx="256" cy="256" r="240" fill="#4CAF50" />
+          <!-- Lingkaran dalam -->
+          <circle cx="256" cy="256" r="190" fill="#2E7D32" />
+          <!-- Ikon centang -->
+          <path fill="#FFFFFF" d="M369.2 169.3c-7.8-7.8-20.5-7.8-28.3 0L235.8 274.4l-64.7-64.7c-7.8-7.8-20.5-7.8-28.3 0-7.8 7.8-7.8 20.5 0 28.3l78.9 78.9c3.9 3.9 9 5.9 14.1 5.9s10.2-2 14.1-5.9L369.2 197.6c7.9-7.8 7.9-20.5 0-28.3z"/>
+        </svg>
+      </div>
+      
+      <p style="margin: 20px 0;">Kami akan menghubungi Anda untuk informasi selanjutnya.</p>
     </div>
   </div>
 </div>
