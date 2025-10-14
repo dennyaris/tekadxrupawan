@@ -143,7 +143,8 @@
         kontak_pic_guru: telSanitize(form.kontak_pic_guru.value),
         nama_ortu: form.nama_ortu.value.trim(),
         kontak_ortu: telSanitize(form.kontak_ortu.value),
-        submitted_at: new Date().toISOString()
+        submitted_at: new Date().toISOString(),
+        kota_kab: form.kota_kab.value.trim()
       };
       submitToSheet(payload, form);
     });

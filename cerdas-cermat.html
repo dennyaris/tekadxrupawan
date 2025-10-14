@@ -140,7 +140,8 @@
         nama_pic_guru: form.nama_pic_guru.value.trim(),
         kontak_pic_guru: telSanitize(form.kontak_pic_guru.value),
         kontak_perwakilan: telSanitize(form.kontak_perwakilan.value),
-        submitted_at: new Date().toISOString()
+        submitted_at: new Date().toISOString(),
+        jumlah_supporter: form.jumlah_supporter.value.trim()
       };
       submitToSheet(payload, form);
     });

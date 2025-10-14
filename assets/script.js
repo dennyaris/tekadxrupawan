@@ -1,9 +1,4 @@
-
-/**
- * Change this to your deployed Google Apps Script Web App URL
- * Example: https://script.google.com/macros/s/AKfycbyourid/exec
- */
-const ENDPOINT = "https://script.google.com/macros/s/AKfycbyfxOF99aOh_Q2eyJL70FZonMJtOJfd2l239ey4dcBu3MmHuPuNrYvSfsa4PizPdexF_w/exec";
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbxTmLypNYE0hBzW30JsCC306aQvhEXFQSHi7qPAtrOnWCRpgT3T3wxrK99CmQLIcBrfGQ/exec";
 
 /**
  * Encode a JS object to x-www-form-urlencoded so we avoid CORS preflight.
