@@ -65,55 +65,55 @@
     <div class="card">
       <div class="header">
         <h1>📚 Cerdas Cermat</h1>
-        <p>Form pendaftaran tim lomba Cerdas Cermat SMA/Sederajat berlaku 1 tim beranggotakan 5 orang.</p>
+        <p>Form pendaftaran tim lomba Cerdas Cermat berlaku untuk 1 tim beranggotakan 5 orang.</p>
       </div>
       <form class="form" id="form-cc">
         <div class="notice"> <span class="req">*</span> wajib diisi.</div>
         <div class="grid">
-          <div>
+          <div class="form-group">
             <label>Asal Sekolah <span class="req">*</span></label>
-            <input type="text" name="asal_sekolah" required placeholder="SMA / Sederajat ...">
+            <input type="text" name="asal_sekolah" required placeholder="SMA / Sederajat">
           </div>
-          <div>
+          <div class="form-group">
             <label>Kota/Kab <span class="req">*</span></label>
             <input type="text" name="kota_kab" required placeholder="Contoh: Tangerang">
           </div>
 
-          <div class="row-full">
+          <div class="row-full form-group">
             <label>Nama Tim <span class="req">*</span></label>
             <input type="text" name="nama_tim" required placeholder="Contoh: Tim Aksara">
           </div>
 
-          <div class="row-full"><label>Nama Lengkap Anggota Tim</label></div>
-          <div><input type="text" name="anggota_1" placeholder="Anggota 1 (wajib)" required></div>
-          <div><input type="text" name="anggota_2" placeholder="Anggota 2 (wajib)" required></div>
-          <div><input type="text" name="anggota_3" placeholder="Anggota 3 (wajib)" required></div>
-          <div><input type="text" name="anggota_4" placeholder="Anggota 4"></div>
-          <div><input type="text" name="anggota_5" placeholder="Anggota 5"></div>
+          <div class="row-full form-group"><label>Nama Lengkap Anggota Tim</label></div>
+          <div class="form-group"><input type="text" name="anggota_1" placeholder="Anggota 1 (wajib)" required></div>
+          <div class="form-group"><input type="text" name="anggota_2" placeholder="Anggota 2 (wajib)" required></div>
+          <div class="form-group"><input type="text" name="anggota_3" placeholder="Anggota 3 (wajib)" required></div>
+          <div class="form-group"><input type="text" name="anggota_4" placeholder="Anggota 4"></div>
+          <div class="form-group"><input type="text" name="anggota_5" placeholder="Anggota 5"></div>
 
-          <div style="grid-column: 1/2;">
+          <div class="form-group mobile-full">
             <label>Nama PIC Guru <span class="req">*</span></label>
             <input type="text" name="nama_pic_guru" required placeholder="Nama guru pendamping">
           </div>
-          <div style="grid-column: 2/3;">
+          <div class="form-group mobile-full">
             <label>Kontak PIC Guru <span class="req">*</span></label>
             <input type="tel" name="kontak_pic_guru" inputmode="tel" pattern="[0-9+ ]{8,}" required placeholder="08xxx / +62xxx">
             <div class="help">Gunakan angka, spasi, dan tanda + saja.</div>
           </div>
 
-          <div style="grid-column: 1/2;">
+          <div class="form-group mobile-full">
             <label>Kontak Perwakilan Anggota Tim <span class="req">*</span></label>
             <input type="tel" name="kontak_perwakilan" inputmode="tel" pattern="[0-9+ ]{8,}" required placeholder="08xxx / +62xxx">
           </div>
-          <div style="grid-column: 2/3;">
+          <div class="form-group mobile-full">
             <label>Jumlah Supporter Yang Hadir</label>
             <input type="text" name="jumlah_supporter" min="0" placeholder="Contoh: 3">
           </div>
         </div>
 
         <div class="footer-note">Dengan mengirim formulir ini, Anda menyetujui data digunakan untuk keperluan administrasi lomba.</div>
-        <div class="actions" style="justify-content: center; flex-wrap: wrap;">
-          <button type="submit" class="btn-primary" style="margin: 0 auto; min-width: 200px;">Kirim Pendaftaran</button>
+        <div class="actions">
+          <button type="submit" class="btn-primary">Kirim Pendaftaran</button>
         </div>
       </form>
     </div>

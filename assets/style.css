@@ -113,7 +113,15 @@ button,a[role="button"]{border:0;border-radius:12px;padding:12px 16px;font-weigh
 .success{color:#86efac}
 .error{color:#fca5a5}
 a{color:#b6cbff;text-decoration:underline}
-@media (max-width:720px){.grid{grid-template-columns:1fr}}
+@media (max-width:720px){
+  .grid{grid-template-columns:1fr}
+  .mobile-full{grid-column:1 / -1 !important}
+  .container{padding:12px}
+  .card{border-radius:12px;margin:0 0 20px}
+  .form{padding:16px}
+  .actions{flex-direction:column}
+  .btn-primary{width:100%;margin:0 auto}
+}
 .req {
   color: #ff0000;
   margin-left: 4px;
