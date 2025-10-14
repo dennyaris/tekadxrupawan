@@ -5,74 +5,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Form Pendaftaran - Cerdas Cermat</title>
   <link rel="stylesheet" href="assets/style.css"/>
-  <script>
-    // Mencegah klik kanan
-    document.addEventListener('contextmenu', function(e) {
-      e.preventDefault();
-      return false;
-    });
-    
-    // Mencegah shortcut keyboard untuk inspect element
-    document.addEventListener('keydown', function(e) {
-      // F12
-      if(e.keyCode == 123) {
-        e.preventDefault();
-        return false;
-      }
-      
-      // Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
-      if(e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74 || e.keyCode == 67)) {
-        e.preventDefault();
-        return false;
-      }
-      
-      // Ctrl+U (view source)
-      if(e.ctrlKey && e.keyCode == 85) {
-        e.preventDefault();
-        return false;
-      }
-    });
-    
-    // Deteksi DevTools - versi yang lebih baik untuk mobile
-    function detectDevTools() {
-      // Nonaktifkan deteksi pada perangkat mobile
-      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        return; // Skip deteksi pada perangkat mobile
-      }
-      
-      // Untuk desktop, gunakan threshold yang lebih besar
-      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-      const widthThreshold = isSafari ? 300 : 160;
-      const heightThreshold = isSafari ? 300 : 160;
-      
-      const widthDiff = window.outerWidth - window.innerWidth;
-      const heightDiff = window.outerHeight - window.innerHeight;
-      
-      if (widthDiff > widthThreshold || heightDiff > heightThreshold) {
-        document.body.innerHTML = '<div style="text-align:center;padding:50px;"><h1>Akses Ditolak</h1><p>Tindakan tidak diizinkan.</p></div>';
-      }
+  <style>
+    .req {
+      color: #ff0000;
+      margin-left: 4px;
+      font-weight: bold;
     }
-    
-    // Tunda eksekusi untuk memastikan halaman dimuat terlebih dahulu
-    setTimeout(function() {
-      window.addEventListener('resize', detectDevTools);
-      setInterval(detectDevTools, 1000);
-    }, 1500);
-  </script>
+    input, select, textarea {
+      background-color: #ffffff;
+      border-radius: 8px;
+      border: 1px solid rgba(12, 132, 87, 0.3);
+      color: #333;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: #ffd700;
+      box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.25);
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #0a3d62, #0c8457);
+      border: 2px solid #ffd700;
+      color: #ffd700;
+      border-radius: 50px;
+      padding: 12px 24px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background: #ffd700;
+      color: #0a3d62;
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+    }
+    .header h1 {
+      color: #ffd700;
+    }
+    .header p {
+      color: #e7ecff;
+    }
+    .footer-note {
+      color: #b3c6d1;
+    }
+  </style>
 </head>
-<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
+<body oncontextmenu="return false" ondragstart="return false">
   <div class="container">
     <div class="card">
       <div class="header">
         <h1>📚 Cerdas Cermat</h1>
-        <p>Form pendaftaran tim lomba Cerdas Cermat (maks 5 anggota).</p>
+        <p>Form pendaftaran tim lomba Cerdas Cermat SMA/Sederajat berlaku 1 tim beranggotakan 5 orang.</p>
       </div>
       <form class="form" id="form-cc">
         <div class="notice"> <span class="req">*</span> wajib diisi.</div>
         <div class="grid">
           <div>
             <label>Asal Sekolah <span class="req">*</span></label>
-            <input type="text" name="asal_sekolah" required placeholder="SMP / SMA / SMK ...">
+            <input type="text" name="asal_sekolah" required placeholder="SMA / Sederajat ...">
           </div>
           <div>
             <label>Kota/Kab <span class="req">*</span></label>
@@ -86,24 +73,28 @@
 
           <div class="row-full"><label>Nama Lengkap Anggota Tim</label></div>
           <div><input type="text" name="anggota_1" placeholder="Anggota 1 (wajib)" required></div>
-          <div><input type="text" name="anggota_2" placeholder="Anggota 2"></div>
-          <div><input type="text" name="anggota_3" placeholder="Anggota 3"></div>
+          <div><input type="text" name="anggota_2" placeholder="Anggota 2 (wajib)" required></div>
+          <div><input type="text" name="anggota_3" placeholder="Anggota 3 (wajib)" required></div>
           <div><input type="text" name="anggota_4" placeholder="Anggota 4"></div>
           <div><input type="text" name="anggota_5" placeholder="Anggota 5"></div>
 
-          <div>
+          <div style="grid-column: 1/2;">
             <label>Nama PIC Guru <span class="req">*</span></label>
             <input type="text" name="nama_pic_guru" required placeholder="Nama guru pendamping">
           </div>
-          <div>
+          <div style="grid-column: 2/3;">
             <label>Kontak PIC Guru <span class="req">*</span></label>
             <input type="tel" name="kontak_pic_guru" inputmode="tel" pattern="[0-9+ ]{8,}" required placeholder="08xxx / +62xxx">
             <div class="help">Gunakan angka, spasi, dan tanda + saja.</div>
           </div>
 
-          <div class="row-full">
+          <div style="grid-column: 1/2;">
             <label>Kontak Perwakilan Anggota Tim <span class="req">*</span></label>
             <input type="tel" name="kontak_perwakilan" inputmode="tel" pattern="[0-9+ ]{8,}" required placeholder="08xxx / +62xxx">
+          </div>
+          <div style="grid-column: 2/3;">
+            <label>Jumlah Supporter Yang Hadir</label>
+            <input type="text" name="jumlah_supporter" min="0" placeholder="Contoh: 3">
           </div>
         </div>
 
