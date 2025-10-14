@@ -5,47 +5,60 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Form Pendaftaran - Cerdas Cermat</title>
   <link rel="stylesheet" href="assets/style.css"/>
-  <style>
-    .req {
-      color: #ff0000;
-      margin-left: 4px;
-      font-weight: bold;
+  <script>
+    // Mencegah klik kanan
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+      return false;
+    });
+    
+    // Mencegah shortcut keyboard untuk inspect element
+    document.addEventListener('keydown', function(e) {
+      // F12
+      if(e.keyCode == 123) {
+        e.preventDefault();
+        return false;
+      }
+      
+      // Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
+      if(e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74 || e.keyCode == 67)) {
+        e.preventDefault();
+        return false;
+      }
+      
+      // Ctrl+U (view source)
+      if(e.ctrlKey && e.keyCode == 85) {
+        e.preventDefault();
+        return false;
+      }
+    });
+    
+    // Deteksi DevTools - versi yang lebih baik untuk mobile
+    function detectDevTools() {
+      // Nonaktifkan deteksi pada perangkat mobile
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        return; // Skip deteksi pada perangkat mobile
+      }
+      
+      // Untuk desktop, gunakan threshold yang lebih besar
+      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+      const widthThreshold = isSafari ? 300 : 160;
+      const heightThreshold = isSafari ? 300 : 160;
+      
+      const widthDiff = window.outerWidth - window.innerWidth;
+      const heightDiff = window.outerHeight - window.innerHeight;
+      
+      if (widthDiff > widthThreshold || heightDiff > heightThreshold) {
+        document.body.innerHTML = '<div style="text-align:center;padding:50px;"><h1>Akses Ditolak</h1><p>Tindakan tidak diizinkan.</p></div>';
+      }
     }
-    input, select, textarea {
-      background-color: #ffffff;
-      border-radius: 8px;
-      border: 1px solid rgba(12, 132, 87, 0.3);
-      color: #333;
-    }
-    input:focus, select:focus, textarea:focus {
-      border-color: #ffd700;
-      box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.25);
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, #0a3d62, #0c8457);
-      border: 2px solid #ffd700;
-      color: #ffd700;
-      border-radius: 50px;
-      padding: 12px 24px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      background: #ffd700;
-      color: #0a3d62;
-      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
-    }
-    .header h1 {
-      color: #ffd700;
-    }
-    .header p {
-      color: #e7ecff;
-    }
-    .footer-note {
-      color: #b3c6d1;
-    }
-  </style>
+    
+    // Tunda eksekusi untuk memastikan halaman dimuat terlebih dahulu
+    setTimeout(function() {
+      window.addEventListener('resize', detectDevTools);
+      setInterval(detectDevTools, 1000);
+    }, 1500);
+  </script>
 </head>
 <body oncontextmenu="return false" ondragstart="return false">
   <div class="container">
