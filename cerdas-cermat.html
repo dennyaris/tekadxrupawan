@@ -104,14 +104,18 @@
           <div class="form-group"><input type="text" name="anggota_4" placeholder="Anggota 4"></div>
           <div class="form-group"><input type="text" name="anggota_5" placeholder="Anggota 5"></div>
 
-          <div class="form-group mobile-full">
-            <label>Nama PIC Guru <span class="req">*</span></label>
-            <input type="text" name="nama_pic_guru" required placeholder="Nama guru pendamping">
-          </div>
-          <div class="form-group mobile-full">
-            <label>Kontak PIC Guru <span class="req">*</span></label>
-            <input type="tel" name="kontak_pic_guru" inputmode="tel" pattern="[0-9+ ]{8,}" required placeholder="08xxx / +62xxx">
-            <div class="help">Gunakan angka, spasi, dan tanda + saja.</div>
+          <div class="row-full">
+            <div class="grid grid-1-3" style="margin-top: 16px;">
+              <div class="form-group">
+                <label>Nama PIC Guru <span class="req">*</span></label>
+                <input type="text" name="nama_pic_guru" required placeholder="Nama guru pendamping">
+              </div>
+              <div class="form-group">
+                <label>Kontak PIC Guru <span class="req">*</span></label>
+                <input type="tel" name="kontak_pic_guru" inputmode="tel" pattern="[0-9+ ]{8,}" required placeholder="08xxx / +62xxx">
+                <div class="help">Gunakan angka, spasi, dan tanda + saja.</div>
+              </div>
+            </div>
           </div>
 
           <div class="form-group mobile-full">
