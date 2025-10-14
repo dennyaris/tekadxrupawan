@@ -33,18 +33,31 @@
       }
     });
     
-    // Deteksi DevTools
+    // Deteksi DevTools - versi yang lebih baik untuk mobile
     function detectDevTools() {
-      const widthThreshold = window.outerWidth - window.innerWidth > 160;
-      const heightThreshold = window.outerHeight - window.innerHeight > 160;
+      // Nonaktifkan deteksi pada perangkat mobile
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        return; // Skip deteksi pada perangkat mobile
+      }
       
-      if(widthThreshold || heightThreshold) {
+      // Untuk desktop, gunakan threshold yang lebih besar
+      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+      const widthThreshold = isSafari ? 300 : 160;
+      const heightThreshold = isSafari ? 300 : 160;
+      
+      const widthDiff = window.outerWidth - window.innerWidth;
+      const heightDiff = window.outerHeight - window.innerHeight;
+      
+      if (widthDiff > widthThreshold || heightDiff > heightThreshold) {
         document.body.innerHTML = '<div style="text-align:center;padding:50px;"><h1>Akses Ditolak</h1><p>Tindakan tidak diizinkan.</p></div>';
       }
     }
     
-    window.addEventListener('resize', detectDevTools);
-    setInterval(detectDevTools, 1000);
+    // Tunda eksekusi untuk memastikan halaman dimuat terlebih dahulu
+    setTimeout(function() {
+      window.addEventListener('resize', detectDevTools);
+      setInterval(detectDevTools, 1000);
+    }, 1500);
   </script>
 </head>
 <body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
